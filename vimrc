@@ -17,6 +17,10 @@ call plug#begin('~/.vim/plugged')
 # Need to run :CocInstall coc-clangd in vim
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 
+# copilot
+Plug 'github/copilot.vim'
+# setup copilot with :Copilot setup
+
 # UI and file tree
 Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
@@ -53,6 +57,11 @@ set termguicolors
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-]> <Plug>(coc-definition)
+imap <silent><script><expr> <A-S> copilot#Accept("\<Tab>")
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+imap <silent><script><expr> <A-n> copilot#Next()
+imap <silent><script><expr> <A-p> copilot#Previous()
+
 
 # ----- Lightline theme -----
 g:lightline = { 'colorscheme': 'wombat' }
@@ -63,5 +72,7 @@ autocmd VimEnter * echom "Vim 9.0 ready ✔"
 # -----------
 #  Install servers once inside Vim
 #  :CocInstall coc-clangd coc-pyright
+#
+#  
 
 
