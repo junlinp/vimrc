@@ -1,0 +1,57 @@
+vim9script
+# ==============================
+#   Vim 9.0 Single-File Setup
+# ==============================
+
+# ----- Bootstrap vim-plug -----
+if !filereadable(expand('~/.vim/autoload/plug.vim'))
+  silent execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs '
+        .. 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  echom "→ Installed vim-plug successfully"
+endif
+
+# ----- Plugin definitions -----
+call plug#begin('~/.vim/plugged')
+
+# UI and file tree
+Plug 'preservim/nerdtree'
+Plug 'itchyny/lightline.vim'
+
+# Better searching & fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+# Git integration
+Plug 'tpope/vim-fugitive'
+
+# Syntax and editing helpers
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+
+call plug#end()
+
+# ----- Core settings -----
+set nocompatible
+syntax on
+filetype plugin indent on
+set number
+set relativenumber
+set mouse=a
+set ignorecase
+set smartcase
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set clipboard=unnamedplus
+set termguicolors
+
+# ----- Key mappings -----
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-p> :Files<CR>
+
+# ----- Lightline theme -----
+g:lightline = { 'colorscheme': 'wombat' }
+
+# ----- Startup message -----
+autocmd VimEnter * echom "Vim 9.0 ready ✔"
+
