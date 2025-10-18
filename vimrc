@@ -13,6 +13,10 @@ endif
 # ----- Plugin definitions -----
 call plug#begin('~/.vim/plugged')
 
+# coc
+# Need to run :CocInstall coc-clangd in vim
+Plug 'neoclide/coc.nvim', {'branch':'release'}
+
 # UI and file tree
 Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
@@ -48,10 +52,16 @@ set termguicolors
 # ----- Key mappings -----
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-p> :Files<CR>
+nnoremap <C-]> <Plug>(coc-definition)
 
 # ----- Lightline theme -----
 g:lightline = { 'colorscheme': 'wombat' }
 
 # ----- Startup message -----
 autocmd VimEnter * echom "Vim 9.0 ready ✔"
+
+# -----------
+#  Install servers once inside Vim
+#  :CocInstall coc-clangd coc-pyright
+
 
