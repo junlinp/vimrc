@@ -36,6 +36,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 
+Plug 'tpope/vim-fugitive'
+
+
 call plug#end()
 
 # ----- Core settings -----
