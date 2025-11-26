@@ -56,7 +56,15 @@ set termguicolors
 # ----- Key mappings -----
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-p> :Files<CR>
+# Coc navigation
+inoremap <slilent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <CR> pumvisible() ? coc#pum#confirm() : "\<CR>"
+# Coc go to definition
 nnoremap <C-]> <Plug>(coc-definition)
+
+# Copilot integration
+g:copilot_no_tab_map = v:true
 imap <silent><script><expr> <A-S> copilot#Accept("\<Tab>")
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 imap <silent><script><expr> <A-n> copilot#Next()
@@ -73,6 +81,5 @@ autocmd VimEnter * echom "Vim 9.0 ready ✔"
 #  Install servers once inside Vim
 #  :CocInstall coc-clangd coc-pyright
 #
-#  
 
 
