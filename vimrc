@@ -35,6 +35,8 @@ Plug 'tpope/vim-fugitive'
 # Syntax and editing helpers
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
+
 
 Plug 'tpope/vim-fugitive'
 
@@ -53,7 +55,6 @@ set smartcase
 set expandtab
 set shiftwidth=2
 set tabstop=2
-set clipboard=unnamedplus
 set termguicolors
 
 # ----- Key mappings -----
@@ -73,6 +74,21 @@ imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 imap <silent><script><expr> <A-n> copilot#Next()
 imap <silent><script><expr> <A-p> copilot#Previous()
 
+# Set up filetype-specific formatting using the '=' operator
+
+# For C++ files, use clang-format
+augroup fmt_cpp
+    autocmd!
+    autocmd FileType c,cpp setlocal equalprg=clang-format
+augroup END
+
+# For Python files, use black.
+# '-q -' makes black format from stdin and output to stdout quietly.
+augroup fmt_python_ruff
+    autocmd!
+    autocmd FileType python setlocal equalprg=ruff\ format\ -
+augroup END
+
 
 # ----- Lightline theme -----
 g:lightline = { 'colorscheme': 'wombat' }
@@ -81,7 +97,7 @@ g:lightline = { 'colorscheme': 'wombat' }
 autocmd VimEnter * echom "Vim 9.0 ready ✔"
 
 # -----------
-#  Install servers once inside Vim
+# Install servers once inside Vim
 #  :CocInstall coc-clangd coc-pyright
 #
 
